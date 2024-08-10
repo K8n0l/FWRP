@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/service/SubscriptionService.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/util/PreferenceType.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/service/impl/SubscriptionServiceImpl.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/util/LoginResult.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/controller/AdminServlet.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/service/FoodService.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/web/admin.jsp</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/dao/AlertDao.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/entity/Alert.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/util/DBConnection.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/service/NotificationService.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/service/SurplusFoodService.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/test/service/impl/FoodServiceImplTest.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/service/impl/NotificationServiceImpl.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/service/impl/FoodServiceImpl.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/service/impl/SurplusFoodServiceImpl.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/dao/SubscriptionDao.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/entity/Subscription.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/entity/Food.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/service/UserService.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/web/META-INF/context.xml</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/dao/impl/AlertDaoImpl.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/dao/FoodDao.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/util/FoodType.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/entity/SurplusFood.java</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/web/index.jsp</file>
+            <file>file:/C:/Users/navra/OneDrive/Desktop/Project%20java/src/java/controller/LogoutServlet.java</file>
+        </group>
+    </open-files>
+</project-private>
