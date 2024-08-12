@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/rohit/Downloads/Project/web/views/subscribe.jsp</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/src/java/util/ContactType.java</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/web/views/admin/admin_dashboard.jsp</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/src/java/util/SubscriptionResult.java</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/src/java/controller/AdminServlet.java</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/src/java/service/impl/FoodServiceImpl.java</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/web/views/admin/surplusfoods.jsp</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/src/java/util/UserType.java</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/web/views/admin/foods.jsp</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/src/java/dao/AlertDao.java</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/web/views/listSurplusFood.jsp</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/src/java/controller/PurchaseSurplusServlet.java</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/test/service/impl/FoodServiceImplTest.java</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/web/views/updateSurplusFood.jsp</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/web/views/consumer_dashboard.jsp</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/src/java/controller/LogoutServlet.java</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/src/java/dao/impl/AlertDaoImpl.java</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/web/views/home.jsp</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/src/java/util/LoginResult.java</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/src/java/util/PreferenceType.java</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/src/java/util/FoodType.java</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/web/admin.jsp</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/src/java/util/DBConnection.java</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/web/views/admin/users.jsp</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/web/views/updateFood.jsp</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/web/views/register.jsp</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/web/views/charity_dashboard.jsp</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/src/java/dao/impl/FoodDaoImpl.java</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/web/views/retailer_dashboard.jsp</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/web/index.jsp</file>
+            <file>file:/C:/Users/rohit/Downloads/Project/web/views/admin/subscriptions.jsp</file>
+        </group>
+    </open-files>
+</project-private>
