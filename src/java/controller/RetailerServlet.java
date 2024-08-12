@@ -1,0 +1,305 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+package controller;
+
+import entity.Food;
+import entity.SurplusFood;
+import entity.User;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import service.FoodService;
+import service.SurplusFoodService;
+import service.impl.FoodServiceImpl;
+import service.impl.SurplusFoodServiceImpl;
+import util.FoodType;
+
+@WebServlet(name = "RetailerServlet", urlPatterns = {"/RetailerServlet", "*.do"})
+public class RetailerServlet extends HttpServlet {
+
+    private FoodService foodService = null;
+    private SurplusFoodService surplusFoodService = null;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        this.foodService = new FoodServiceImpl();
+        this.surplusFoodService = new SurplusFoodServiceImpl();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        List<Food> foodsInventory = foodService.getFoodInventoryByUser(user);
+        List<SurplusFood> surplusfoods = surplusFoodService.getSurplusFoodByUser(user);
+
+        request.setAttribute("foodsInventory", foodsInventory);
+        request.setAttribute("surplusfoods", surplusfoods);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/retailer_dashboard.jsp");
+        dispatcher.forward(request, response);
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String url = request.getRequestURI();
+
+        String methodName = url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf("."));
+        System.out.println(methodName);
+        Method method = null;
+        try {
+            method = getClass().getDeclaredMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
+            method.invoke(this, request, response);
+        } catch (Exception e) {
+            throw new RuntimeException("method error" + methodName, e);
+        }
+    }
+    
+    private void addFood(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String foodType = request.getParameter("foodType");
+
+        Food food = new Food();
+        food.setName(request.getParameter("name"));
+        food.setQuantity(Integer.parseInt(request.getParameter("quantity")));
+        food.setPrice(Double.parseDouble(request.getParameter("price")));
+
+        if (foodType != null && !foodType.isEmpty()) {
+            food.setFoodType(FoodType.valueOf(foodType));
+        } else {
+            request.setAttribute("errorMessage", "Please select a user type.");
+            doGet(request, response);
+            return;
+        }
+
+        Date expirationDate = null;
+        try {
+            expirationDate = new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("expiration"));
+
+        } catch (Exception e) {
+            request.setAttribute("errorMessage", "Expiration date error");
+            doGet(request, response);
+        }
+        food.setExpirationDate(expirationDate);
+
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        food.setUserID(user.getId());
+
+        foodService.addFoodInventory(food);
+
+        request.setAttribute("successMessage", "Add food item successful!");
+        doGet(request, response);
+
+    }
+
+    private void getFoodDetail(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String foodID = request.getParameter("selectOption");
+
+        Food food = foodService.getFoodDetail(Integer.parseInt(foodID));
+
+        HttpSession session = request.getSession();
+        session.setAttribute("foodDetail", food);
+        if (Integer.parseInt(request.getParameter("updateFlag")) != 1) {
+            request.getRequestDispatcher("/views/listSurplusFood.jsp").forward(request, response);
+        } else {
+            request.getRequestDispatcher("/views/updateFood.jsp").forward(request, response);
+        }
+    }
+
+    private void updateFood(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Food food = (Food) session.getAttribute("foodDetail");
+        String foodType = request.getParameter("foodType");
+        food.setName(request.getParameter("name"));
+        food.setQuantity(Integer.parseInt(request.getParameter("quantity")));
+        food.setPrice(Double.parseDouble(request.getParameter("price")));
+
+        if (foodType != null && !foodType.isEmpty()) {
+            food.setFoodType(FoodType.valueOf(foodType));
+        } else {
+            request.setAttribute("errorMessage", "Please select a user type.");
+            request.getRequestDispatcher("/views/updateFood.jsp").forward(request, response);
+            return;
+        }
+
+        Date expirationDate = null;
+        try {
+            expirationDate = new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("expiration"));
+
+        } catch (Exception e) {
+            request.setAttribute("errorMessage", "Expiration date error");
+            request.getRequestDispatcher("/views/updateFood.jsp").forward(request, response);
+        }
+        food.setExpirationDate(expirationDate);
+
+        foodService.updateOneFood(food);
+
+        request.setAttribute("successMessage", "Update food item successful!");
+        doGet(request, response);
+
+    }
+
+    private void listOneSurplusFood(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        Food food = (Food) session.getAttribute("foodDetail");
+
+        String discountRate = request.getParameter("discountRate");
+        boolean isForDonation = request.getParameter("donation") != null;
+
+        SurplusFood surplusfood = new SurplusFood();
+        surplusfood.setName(food.getName());
+        surplusfood.setQuantity(food.getQuantity());
+        surplusfood.setPrice(food.getPrice());
+        surplusfood.setFoodType(food.getFoodType());
+        surplusfood.setExpirationDate(food.getExpirationDate());
+        surplusfood.setUserID(food.getUserID());
+
+        surplusfood.setDiscountRate(Double.parseDouble(discountRate));
+        surplusfood.setIsForDonation(isForDonation);
+
+        foodService.deleteOneFood(food.getId());
+        surplusFoodService.addSurplusFood(surplusfood);
+        User owner = (User) session.getAttribute("user");
+        surplusFoodService.listSurplusFood(surplusfood, owner);
+        request.setAttribute("successMessage", "Add surplus food item successful!");
+
+        doGet(request, response);
+
+    }
+
+    private void deleteFood(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int foodID = Integer.parseInt(request.getParameter("selectOption"));
+        foodService.deleteOneFood(foodID);
+        request.setAttribute("successMessage", "Delete food item successful!");
+        doGet(request, response);
+    }
+
+    private void getSurplusFoodDetail(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String surplusfoodID = request.getParameter("selectOption");
+
+        SurplusFood surplusfood = surplusFoodService.getSurplusFoodDetail(Integer.parseInt(surplusfoodID));
+
+        HttpSession session = request.getSession();
+        session.setAttribute("foodDetail", surplusfood);
+        request.getRequestDispatcher("/views/updateSurplusFood.jsp").forward(request, response);
+    }
+
+    private void updateSurplusFood(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        SurplusFood surplusfood = (SurplusFood) session.getAttribute("foodDetail");
+
+        String discountRate = request.getParameter("discountRate");
+        boolean isForDonation = request.getParameter("donation") != null;
+
+        surplusfood.setName(surplusfood.getName());
+        surplusfood.setQuantity(surplusfood.getQuantity());
+        surplusfood.setPrice(surplusfood.getPrice());
+        surplusfood.setFoodType(surplusfood.getFoodType());
+        surplusfood.setExpirationDate(surplusfood.getExpirationDate());
+        surplusfood.setUserID(surplusfood.getUserID());
+
+        surplusfood.setDiscountRate(Double.parseDouble(discountRate));
+        surplusfood.setIsForDonation(isForDonation);
+
+        surplusFoodService.updateSurplusFood(surplusfood);
+        request.setAttribute("successMessage", "Update surplus food item successful!");
+        doGet(request, response);
+
+    }
+
+    private void unSurplusFood(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int surplusfoodID = Integer.parseInt(request.getParameter("selectOption"));
+        SurplusFood surplusfood = surplusFoodService.getSurplusFoodDetail(surplusfoodID);
+        surplusFoodService.deleteSurplusFood(surplusfoodID);
+        foodService.addFoodInventory(surplusfood);
+        request.setAttribute("successMessage", "Unsurplus food item successful!");
+        doGet(request, response);
+    }
+
+    private void deleteSurplusFood(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int surplusfoodID = Integer.parseInt(request.getParameter("selectOption"));
+        surplusFoodService.deleteSurplusFood(surplusfoodID);
+        request.setAttribute("successMessage", "Delete food item successful!");
+        doGet(request, response);
+    }
+
+    protected void report(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String retailer = request.getParameter("retailer");
+        String[] foodIDs = request.getParameterValues("selectOption");
+
+        String fileName = "SurplusReport.txt";
+        File myFile = new File(fileName);
+
+        try (PrintWriter writer = new PrintWriter(fileName)) {
+            Date today = new Date();
+            writer.println("Report saved on: " + today + " for retailer: " + retailer);
+
+            for (String foodID : foodIDs) {
+                int id = Integer.parseInt(foodID);
+                SurplusFood food = surplusFoodService.getSurplusFoodDetail(id);
+                if (food != null) {
+                    String name = food.getName();
+                    String quantity = String.valueOf(food.getQuantity());
+                    String price = String.valueOf(food.getPrice());
+                    String type = String.valueOf(food.getFoodType());
+                    String expiration = String.valueOf(food.getExpirationDate());
+                    String discount = String.valueOf(food.getDiscountRate());
+                    String donation = String.valueOf(food.isIsForDonation());
+
+                    writer.println("\nFood ID: " + id);
+                    writer.println("Name: " + name);
+                    writer.println("Quantity: " + quantity);
+                    writer.println("Price: " + price);
+                    writer.println("Type: " + type);
+                    writer.println("Expiration: " + expiration);
+                    writer.println("Discount: " + discount);
+                    writer.println("Is it for donation: " + donation);
+                }
+            }
+            writer.flush();
+            String locationMessage = "You can locate your file at: " + myFile.getCanonicalPath();
+            request.setAttribute("successReportMessage", "Data saved successfully.");
+            request.setAttribute("locationMessage", locationMessage);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            request.setAttribute("errorReportMessage", "Error saving data, please try again.");
+        }
+        doGet(request, response);
+    }
+
+    @Override
+    public String getServletInfo() {
+        return "Server Information";
+    }// </editor-fold>
+
+}

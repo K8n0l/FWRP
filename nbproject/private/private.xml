@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/src/java/service/impl/FoodServiceImpl.java</file>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/src/java/controller/ClaimFoodServlet.java</file>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/src/java/controller/ClientServlet.java</file>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/src/java/controller/LogoutServlet.java</file>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/src/java/controller/RegisterServlet.java</file>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/src/java/dao/impl/AlertDaoImpl.java</file>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/src/java/create.sql</file>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/src/java/dao/SurplusFoodDao.java</file>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/src/java/util/DBConnection.java</file>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/src/java/service/FoodService.java</file>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/src/java/controller/AdminServlet.java</file>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/web/views/retailer_dashboard.jsp</file>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/src/java/dao/UserDao.java</file>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/src/java/controller/PurchaseSurplusServlet.java</file>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/src/java/dao/AlertDao.java</file>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/src/java/dao/SubscriptionDao.java</file>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/web/views/charity_dashboard.jsp</file>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/src/java/entity/Alert.java</file>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/src/java/dao/FoodDao.java</file>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/src/java/util/ContactType.java</file>
+            <file>file:/C:/Users/Kunal%20Sharma/Documents/NetBeansProjects/PROJECT/src/java/dao/impl/FoodDaoImpl.java</file>
+        </group>
+    </open-files>
+</project-private>
